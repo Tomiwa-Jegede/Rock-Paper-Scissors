@@ -6,7 +6,11 @@ let reset = document.querySelector('.reset');
 let message = document.querySelector('.message');
 
 // Load score from localStorage or set a default score object if not found
-let score = JSON.parse(localStorage.getItem('score'))
+let score = JSON.parse(localStorage.getItem('score')) || {
+  win: 0,
+  lose: 0,
+  tie: 0,
+};
 
 win.innerHTML = score.win;
 lose.innerHTML = score.lose;
@@ -40,8 +44,8 @@ all_btn.forEach(button => {
     if (computer_move === player_move) {
       result = 'You tied';
     } else if ((computer_move === 'ROCK' && player_move === 'PAPER') ||
-               (computer_move === 'PAPER' && player_move === 'SCISSORS') ||
-               (computer_move === 'SCISSORS' && player_move === 'ROCK')) {
+      (computer_move === 'PAPER' && player_move === 'SCISSORS') ||
+      (computer_move === 'SCISSORS' && player_move === 'ROCK')) {
       result = 'You win';
     } else {
       result = 'You lose';
